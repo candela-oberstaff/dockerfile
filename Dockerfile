@@ -1,5 +1,6 @@
 # Usa la imagen oficial de n8n como base
-FROM n8nio/n8n:latest
+FROM n8nio/n8n:latest-buster
+
 
 # Instala las dependencias necesarias para Chromium / Puppeteer
 USER root
