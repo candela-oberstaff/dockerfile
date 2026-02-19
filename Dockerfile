@@ -55,3 +55,4 @@ RUN apt-get update \
 USER node
 CMD ["n8n"]
 
+
