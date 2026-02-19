@@ -1,13 +1,13 @@
-# Imagen oficial de n8n 
+# Usamos la imagen oficial de n8n (basada en Debian slim)
 FROM n8nio/n8n:latest
 
-# Cambiamos a root si necesitamos permisos para npm
+# Cambiamos a root para instalar paquetes necesarios para Puppeteer
 USER root
 
-# Instala Puppeteer (ya incluye Chromium)
+# Instala Puppeteer (incluye Chromium)
 RUN npm install puppeteer
 
-# Volvemos a usuario node
+# Volvemos al usuario node
 USER node
 
 # Comando por defecto
