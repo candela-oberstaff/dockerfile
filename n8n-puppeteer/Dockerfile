@@ -1,4 +1,4 @@
-# Usa la imagen oficial de n8n como base
+# Usa la imagen oficial de n8n como base :v
 FROM n8nio/n8n:latest
 
 # Instala las dependencias necesarias para Chromium / Puppeteer
