@@ -1,4 +1,4 @@
-# Imagen oficial de n8n
+# Imagen oficial de n8n 
 FROM n8nio/n8n:latest
 
 # Cambiamos a root si necesitamos permisos para npm
