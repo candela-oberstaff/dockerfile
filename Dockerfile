@@ -1,5 +1,5 @@
 # Imagen oficial de n8n basada en Debian
-FROM n8nio/n8n:latest-buster
+FROM n8nio/n8n:latest  # Usa la imagen más reciente disponible
 
 # Usuario node (ya tiene npm)
 USER node
@@ -10,5 +10,3 @@ RUN npm install puppeteer
 # No necesitamos instalar chromium manualmente, Puppeteer ya lo trae
 # CMD por defecto
 CMD ["n8n"]
-
-
