@@ -1,17 +1,17 @@
-# Imagen oficial de n8n
+# Dockerfile final recomendado
 FROM n8nio/n8n:latest
 
-# Cambiamos al usuario node (ya tiene npm en PATH)
+# Usuario node (ya tiene npm)
 USER node
 
-# Instala Puppeteer globalmente
-RUN npm install -g puppeteer
+# Instala Puppeteer sin Chromium incluido
+RUN npm install puppeteer@latest --omit=dev --ignore-scripts=false --unsafe-perm
 
-# Cambiamos a root solo para instalar dependencias de Chromium necesarias
+# Cambiamos a root para dependencias de Chromium
 USER root
-
 RUN apt-get update \
     && apt-get install -y \
+        chromium \
         gconf-service \
         libasound2 \
         libatk1.0-0 \
@@ -52,9 +52,6 @@ RUN apt-get update \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-# Volvemos al usuario node para correr n8n
 USER node
-
-# Comando por defecto
 CMD ["n8n"]
 
