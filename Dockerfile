@@ -1,12 +1,22 @@
-# Imagen oficial de n8n basada en Debian
-FROM n8nio/n8n:latest  # Usa la imagen más reciente disponible
+FROM n8nio/n8n:latest
 
-# Usuario node (ya tiene npm)
+USER root
+
+# Instalar dependencias necesarias para puppeteer
+RUN apt-get update && apt-get install -y \
+    chromium \
+    fonts-liberation \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    libxss1 \
+    libasound2 \
+    libnss3 \
+    && rm -rf /var/lib/apt/lists/*
+
 USER node
 
-# Instala Puppeteer
 RUN npm install puppeteer
 
-# No necesitamos instalar chromium manualmente, Puppeteer ya lo trae
-# CMD por defecto
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
 CMD ["n8n"]
