@@ -1,12 +1,16 @@
-# Imagen oficial de n8n (ya incluye node y n8n)
+# Imagen oficial de n8n
 FROM n8nio/n8n:latest
 
-# Cambiamos a root para instalar Puppeteer y dependencias de Chromium
+# Cambiamos al usuario node (ya tiene npm en PATH)
+USER node
+
+# Instala Puppeteer globalmente
+RUN npm install -g puppeteer
+
+# Cambiamos a root solo para instalar dependencias de Chromium necesarias
 USER root
 
-# Instalamos Puppeteer globalmente y sus dependencias
-RUN npm install -g puppeteer \
-    && apt-get update \
+RUN apt-get update \
     && apt-get install -y \
         gconf-service \
         libasound2 \
@@ -48,8 +52,9 @@ RUN npm install -g puppeteer \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-# Volvemos al usuario node
+# Volvemos al usuario node para correr n8n
 USER node
 
-# Comando por defecto de n8n
+# Comando por defecto
 CMD ["n8n"]
+
