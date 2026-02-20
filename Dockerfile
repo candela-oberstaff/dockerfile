@@ -13,5 +13,6 @@ RUN npm install puppeteer-core
 
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 ENV NODE_FUNCTION_ALLOW_EXTERNAL=puppeteer
+ENV PUPPETEER_ARGS="--no-sandbox --disable-setuid-sandbox"
 
 USER node
