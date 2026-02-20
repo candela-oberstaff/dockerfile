@@ -1,8 +1,7 @@
-FROM n8nio/n8n:latest
+FROM n8nio/n8n:latest-alpine
 
 USER root
 
-# Instalar chromium y dependencias necesarias
 RUN apk add --no-cache \
     chromium \
     nss \
@@ -11,8 +10,7 @@ RUN apk add --no-cache \
     ca-certificates \
     ttf-freefont
 
-# Instalar puppeteer
-RUN npm install puppeteer
+RUN npm install puppeteer-core
 
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV NODE_FUNCTION_ALLOW_EXTERNAL=puppeteer
